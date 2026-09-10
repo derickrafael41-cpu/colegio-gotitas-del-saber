@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="640.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.ingsoft.colegio.gotitas.controller.RegisterController">
+
+    <stylesheets>
+        <URL value="@/main/resources/css/styles.css" />
+    </stylesheets>
+
+   <children>
+      <GridPane alignment="CENTER" layoutX="295.0" layoutY="-7.0" prefHeight="249.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="53.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="493.0" minWidth="10.0" prefWidth="487.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="60.0" />
+        </columnConstraints>
+
+        <rowConstraints>
+          <RowConstraints maxHeight="650.0" minHeight="10.0" prefHeight="650.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+
+         <children>
+            <StackPane prefHeight="650.0" prefWidth="475.0" GridPane.columnIndex="1">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <!-- Cabecera con Icono -->
+                        <Pane prefHeight="100.0" prefWidth="475.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="197.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/user.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        
+                        <!-- Campos del Formulario de Registro -->
+                        <Pane prefHeight="450.0" prefWidth="475.0">
+                           <children>
+                              <!-- Nombre -->
+                              <Label layoutX="90.0" layoutY="15.0" text="Nombre" />
+                              <TextField fx:id="txtFieldNombre" layoutX="90.0" layoutY="32.0" prefWidth="140.0" />
+
+                              <!-- Apellido -->
+                              <Label layoutX="245.0" layoutY="15.0" text="Apellido" />
+                              <TextField fx:id="txtFieldApellido" layoutX="245.0" layoutY="32.0" prefWidth="140.0" />
+
+                              <!-- Correo -->
+                              <Label layoutX="90.0" layoutY="75.0" text="Correo" />
+                              <TextField fx:id="txtFieldEmail" layoutX="90.0" layoutY="92.0" prefWidth="295.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+
+                              <!-- Contraseña -->
+                              <Label layoutX="90.0" layoutY="135.0" text="Contraseña" />
+                              <PasswordField fx:id="txtFieldPass" layoutX="90.0" layoutY="152.0" prefWidth="295.0" />
+
+                              <!-- Fecha de Nacimiento -->
+                              <Label layoutX="90.0" layoutY="195.0" text="Fecha de Nacimiento" />
+                              <DatePicker fx:id="datePickerFechaNacimiento" layoutX="90.0" layoutY="212.0" prefWidth="295.0" />
+                           </children>
+                        </Pane>
+
+                        <!-- Botones de Acción -->
+                        <Pane prefHeight="100.0" prefWidth="475.0">
+                           <children>
+                              <Button fx:id="btnRegistrar" layoutX="100.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleRegister" prefWidth="130.0" text="Registrarse">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              
+                              <Button fx:id="btnVolverLogin" layoutX="245.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleVolverLogin" prefWidth="130.0" text="Volver al Login">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
