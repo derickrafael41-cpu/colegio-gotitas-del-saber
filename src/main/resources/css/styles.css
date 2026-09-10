@@ -1,6 +1,6 @@
 /* Contenedor principal con la imagen de fondo */
 .mainFxmlClass {
-    -fx-background-image: url("fondo-gotitas.jpg");
+    -fx-background-image: url("login-morado.jpg");
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
@@ -37,18 +37,18 @@
 }
 
 .text-field:focused, .password-field:focused {
-    -fx-border-color: #2ecc71;
+    -fx-border-color: rgb(193, 134, 207);
     -fx-background-color: rgba(0, 0, 0, 0.45);
-    -fx-effect: dropshadow(three-pass-box, rgba(46, 204, 113, 0.3), 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(193, 134, 207, 0.4), 10, 0, 0, 0);
 }
 
-/* Botón con diseño avanzado en tonos verdes */
+/* Botón con diseño en tonos morados (rgb: 193, 134, 207) */
 .button {
     -fx-background-color: 
         linear-gradient(to bottom, rgba(255,255,255,0.15), rgba(0,0,0,0.1)),
-        linear-gradient(to right, #2ecc71, #27ae60);
+        linear-gradient(to right, rgb(193, 134, 207), rgb(160, 100, 175));
     -fx-background-radius: 8px;
-    -fx-border-color: linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0));
+    -fx-border-color: rgba(255, 255, 255, 0.2);
     -fx-border-radius: 8px;
     -fx-border-width: 1px;
     -fx-text-fill: white;
@@ -62,15 +62,15 @@
 .button:hover {
     -fx-background-color: 
         linear-gradient(to bottom, rgba(255,255,255,0.25), rgba(0,0,0,0.1)),
-        linear-gradient(to right, #3ada7a, #2ecc71);
+        linear-gradient(to right, rgb(212, 158, 224), rgb(193, 134, 207));
     -fx-border-color: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0));
-    -fx-effect: dropshadow(three-pass-box, rgba(46, 204, 113, 0.4), 12, 0, 0, 4);
+    -fx-effect: dropshadow(three-pass-box, rgba(193, 134, 207, 0.5), 12, 0, 0, 4);
 }
 
 .button:pressed {
     -fx-background-color: 
         linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.2)),
-        linear-gradient(to right, #259c55, #1e8449);
+        linear-gradient(to right, rgb(155, 95, 170), rgb(125, 70, 140));
     -fx-effect: null;
     -fx-translate-y: 1px;
 }
