@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="640.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.ingsoft.colegio.gotitas.controller.RegisterController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="640.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.edu.ingsoft.colegio.gotitas.controller.RegisterController">
 
     <stylesheets>
         <URL value="@/main/resources/css/styles.css" />
@@ -60,24 +59,20 @@
                               <TextField fx:id="txtFieldNombre" layoutX="90.0" layoutY="32.0" prefWidth="140.0" />
 
                               <!-- Apellido -->
-                              <Label layoutX="245.0" layoutY="15.0" text="Apellido" />
-                              <TextField fx:id="txtFieldApellido" layoutX="245.0" layoutY="32.0" prefWidth="140.0" />
+                              <Label layoutX="86.0" layoutY="95.0" text="Apellido" />
+                              <TextField fx:id="txtFieldApellido" layoutX="90.0" layoutY="122.0" prefWidth="140.0" />
 
                               <!-- Correo -->
-                              <Label layoutX="90.0" layoutY="75.0" text="Correo" />
-                              <TextField fx:id="txtFieldEmail" layoutX="90.0" layoutY="92.0" prefWidth="295.0">
+                              <Label layoutX="90.0" layoutY="157.0" text="Correo" />
+                              <TextField fx:id="txtFieldEmail" layoutX="90.0" layoutY="183.0" prefWidth="295.0">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
                               </TextField>
 
                               <!-- Contraseña -->
-                              <Label layoutX="90.0" layoutY="135.0" text="Contraseña" />
-                              <PasswordField fx:id="txtFieldPass" layoutX="90.0" layoutY="152.0" prefWidth="295.0" />
-
-                              <!-- Fecha de Nacimiento -->
-                              <Label layoutX="90.0" layoutY="195.0" text="Fecha de Nacimiento" />
-                              <DatePicker fx:id="datePickerFechaNacimiento" layoutX="90.0" layoutY="212.0" prefWidth="295.0" />
+                              <Label layoutX="90.0" layoutY="217.0" text="Contraseña" />
+                              <PasswordField fx:id="txtFieldPass" layoutX="90.0" layoutY="241.0" prefWidth="295.0" />
                            </children>
                         </Pane>
 
