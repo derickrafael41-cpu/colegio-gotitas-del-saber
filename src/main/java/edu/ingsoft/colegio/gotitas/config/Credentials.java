@@ -4,8 +4,8 @@ package main.java.edu.ingsoft.colegio.gotitas.config;
 public class Credentials {
     
     public static final String DATA_BASE = System.getenv("DATA_BASE");
-    public static final String URL_DB = "jdbc:mysql://localhost:3306/colegio_gotitas_in4bm?useSSL=false&serverTimezone=UTC";
-    public static final String PASS_DB = "$123456";
+    public static final String URL_DB = "jdbc:mysql://localhost:3306";
+    public static final String PASS_DB = "MascotaMax17";
     public static final String USER_DB = "root";
     
 }
