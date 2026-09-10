@@ -1,6 +1,6 @@
 /* Contenedor principal con la imagen de fondo */
 .mainFxmlClass {
-    -fx-background-image: url("fondo-gotitas.jpg");
+    -fx-background-image: url("galaxy-fondo.jpg");
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
