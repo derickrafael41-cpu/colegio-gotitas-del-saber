@@ -2,14 +2,11 @@ package main.java.edu.ingsoft.colegio.gotitas.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import main.java.edu.ingsoft.colegio.gotitas.dto.request.RegisterRequest;
 import main.java.edu.ingsoft.colegio.gotitas.dto.response.RegisterResponse;
 
-import java.time.ZoneId;
-import java.util.Date;
 import main.java.edu.ingsoft.colegio.gotitas.service.AuthService;
 import main.java.edu.ingsoft.colegio.gotitas.util.SceneManager;
 
@@ -26,8 +23,6 @@ public class RegisterController {
     private TextField txtFieldEmail;
     @FXML
     private PasswordField txtFieldPass;
-    @FXML
-    private DatePicker datePickerFechaNacimiento;
 
     public RegisterController(SceneManager stage, AuthService userRepo) {
         this.stage = stage;
@@ -51,23 +46,17 @@ public class RegisterController {
             String email = txtFieldEmail.getText().trim();
             String contrasenaHashed = txtFieldPass.getText(); // Nota: Asegúrate de aplicar hashing si tu BD lo requiere
 
-            // Convertir LocalDate de JavaFX a java.util.Date
-            Date fechaNacimiento = null;
-            if (datePickerFechaNacimiento.getValue() != null) {
-                fechaNacimiento = Date.from(datePickerFechaNacimiento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-            }
-
-            // Construir el objeto Request (asignando valores por defecto o nulos para IDs autogenerados en BD)
+            // Construir el objeto Request (sin fecha de nacimiento)
             RegisterRequest request = new RegisterRequest(
                     null, // idDocente
                     email,
                     contrasenaHashed,
-                    1, // idRol por defecto (ej. estudiante)
-                    null, // idEstudiante (generado por la BD / lógica)
-                    null, // idCiudad (generado por la BD / lógica)
+                    1, // idRol por defecto
+                    null, // idEstudiante 
+                    null, // idCiudad
                     nombre,
                     apellido,
-                    fechaNacimiento
+                    null
             );
 
             // Simulación de llamada directa al guardado
@@ -101,7 +90,6 @@ public class RegisterController {
         txtFieldApellido.clear();
         txtFieldEmail.clear();
         txtFieldPass.clear();
-        datePickerFechaNacimiento.setValue(null);
     }
 
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
