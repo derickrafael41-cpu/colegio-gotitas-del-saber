@@ -12,7 +12,7 @@ public class RegisterRequest {
     private String idCiudad;
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+
 
     public RegisterRequest(String idDocente, String email, String contrasenaHashed, int idRol, String idEstudiante, String idCiudad, String nombre, String apellido, Date fechaNacimiento) {
         this.idDocente = idDocente;
@@ -23,7 +23,6 @@ public class RegisterRequest {
         this.idCiudad = idCiudad;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getIdDocente() {
@@ -88,13 +87,5 @@ public class RegisterRequest {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
     }
 }

@@ -14,15 +14,6 @@ public class AuthRepository {
     //atributos
     private boolean sqlStatus = false;
 
-    //constructor
-    /*Los métodos son acciones especificas, son tareas
-    individuales, algunos métodos solo realizan una 
-    tarea, pero no retornan nada son "void", otros métodos,
-    realizan tareas, y retornan un tipo de dato primitivo o 
-    comúesto (Clase). Divide y venceras: un método debe ser
-    encargado de reañizar únicamente una tarea especifica, el
-    nombre de ese metodo debe ser modular, directo*/
-
     public LoginResponse findUserByEmail(LoginRequest loginRequest) throws Exception {
         String sql = "select d.nombre, d.apellido, u.contrasena_hash from usuarios as u"
                 + " right join docentes as d"
@@ -32,7 +23,6 @@ public class AuthRepository {
             pstm.setString(1, loginRequest.getEmail());
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
-
                 return new LoginResponse(rs.getString("nombre"), rs.getString("apellido"), rs.getString("contrasena_hash"));
             }
         } catch (SQLException e) {
@@ -42,9 +32,8 @@ public class AuthRepository {
     }
 
     public RegisterResponse saveEstudiante(RegisterRequest registerRequest) throws Exception {
-        String userSql = "insert into Usuarios (id_usuario, email, contrasena_hash, id_rol) values (uuid(), ?, ?, ?)";
-        String estudianteSql = "insert into Estudiantes (id_estudiante, nombre, apellido, fecha_nacimiento, id_ciudad, correo_electronico) values (?, ?, ?, ?, ?, ?, ?)";
-        String countEstudents = "select count(*) from estudiantes";
+        String userSql = "insert into usuarios (id_usuario, email, contrasena_hash , id_rol) values (uuid(), ?, ?, ?)";
+        String estudianteSql = "insert into estudiantes (id_estudiante, nombre, apellido, id_ciudad, correo_electronico) values (?, ?, ?, ?, ?)";
 
         java.sql.Connection conn = null;
 
@@ -52,36 +41,28 @@ public class AuthRepository {
             conn = DataBaseConnection.getConnectionDataBase();
             conn.setAutoCommit(false);
 
-            // 1. Insertar en la tabla Usuarios
-            // Asumiendo el orden de los interrogantes según tu consulta: email, contrasena, rol, ciudad
-            try (PreparedStatement pstmUser = conn.prepareStatement(userSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            // 1. Insertar en la tabla Usuarios (Convirtiendo el rol de int a String de forma segura)
+            try (PreparedStatement pstmUser = conn.prepareStatement(userSql)) {
                 pstmUser.setString(1, registerRequest.getEmail());
                 pstmUser.setString(2, registerRequest.getContrasenaHashed());
-                pstmUser.setInt(3, 1);
+                
+                // Conversión correcta de int a String para evitar el error de compilación
+                String rol = String.valueOf(registerRequest.getIdRol());
+                pstmUser.setString(3, rol);
+                
                 pstmUser.executeUpdate();
-
-                // Si necesitas recuperar el ID autogenerado del usuario (en caso de que la BD lo use para relacionar)
-                // Puedes extraerlo aquí si tu tabla Usuarios usa auto-increment en lugar de uuid() puro.
             }
 
-            // 2. Insertar en la tabla Estudiante
+            // 2. Insertar en la tabla Estudiantes (5 parámetros exactos)
             try (PreparedStatement pstmEstudiante = conn.prepareStatement(estudianteSql)) {
-                pstmEstudiante.setString(1, "concat(\"EST\", count(*))");
-                pstmEstudiante.setString(2, registerRequest.getNombre());
-                pstmEstudiante.setString(3, registerRequest.getApellido());
-
-                // Convertir java.util.Date a java.sql.Date para la base de datos
-                if (registerRequest.getFechaNacimiento() != null) {
-                    pstmEstudiante.setDate(4, new java.sql.Date(registerRequest.getFechaNacimiento().getTime()));
-                } else {
-                    pstmEstudiante.setNull(4, java.sql.Types.DATE);
-                }
-
-                // Si el estudiante necesita relacionarse con el usuario recién creado, 
-                // asegúrate de pasar el ID del usuario correspondiente en el último parámetro.
-                pstmEstudiante.setString(5, registerRequest.getIdDocente()); // O el campo que relacione al usuario
-                pstmEstudiante.setString(6, "concat(\"CIU0\", FLOOR(1 + RAND() * 10), FLOOR(1 + RAND() * 9))");
-                pstmEstudiante.setString(7, registerRequest.getEmail());
+                String idEstudianteUnico = "EST" + System.currentTimeMillis();
+                
+                pstmEstudiante.setString(1, idEstudianteUnico);                      // Parámetro 1: id_estudiante
+                pstmEstudiante.setString(2, registerRequest.getNombre());            // Parámetro 2: nombre
+                pstmEstudiante.setString(3, registerRequest.getApellido());          // Parámetro 3: apellido
+                pstmEstudiante.setString(4, "C001");                                 // Parámetro 4: id_ciudad predeterminada
+                pstmEstudiante.setString(5, registerRequest.getEmail());             // Parámetro 5: correo_electronico
+                
                 pstmEstudiante.executeUpdate();
             }
 
